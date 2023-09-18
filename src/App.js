@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './App.module.css'; // Import the styles
 import LandingPage from './components/LandingPage';
 import LoginForm from './components/LoginForm';
+import UserList from './components/UserList';
 
 function App() {
   const [login, setLogin] = useState(false);
@@ -55,6 +56,8 @@ function App() {
       <main>
         {!isLoggedIn && login ? (
           <LoginForm setIsLoggedIn={setIsLoggedIn} />
+        ) : isLoggedIn ? (
+          <UserList />
         ) : (
           <LandingPage />
         )}
