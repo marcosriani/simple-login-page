@@ -37,6 +37,10 @@ function LoginForm({ setIsLoggedIn }) {
       return;
     }
 
+    // The console log should be replaced by the validation functionality
+    console.log('email', email);
+    console.log('password', password);
+    setIsLoggedIn(true);
     setEmail('');
     setPassword('');
   };

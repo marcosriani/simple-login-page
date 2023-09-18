@@ -7,7 +7,13 @@ function App() {
   const [login, setLogin] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const loginHandler = () => setLogin((prevState) => !prevState);
+  const loginHandler = () => {
+    isLoggedIn
+      ? setIsLoggedIn((prevState) => !prevState)
+      : setLogin((prevState) => !prevState);
+  };
+
+  console.log(isLoggedIn);
 
   return (
     <>
@@ -18,12 +24,13 @@ function App() {
               src="https://preservica.com/img/logo.png"
               alt="Preservica logo"
               className={styles.logo}
+              onClick={loginHandler}
             />
           </a>
           <ul className={styles['navbar-items']}>
             <li>
               <button onClick={loginHandler} type="button">
-                Login
+                {isLoggedIn ? 'Logout' : 'Login'}
               </button>
             </li>
             <li>
@@ -46,7 +53,11 @@ function App() {
       </header>
 
       <main>
-        {login ? <LoginForm setIsLoggedIn={setIsLoggedIn} /> : <LandingPage />}
+        {!isLoggedIn && login ? (
+          <LoginForm setIsLoggedIn={setIsLoggedIn} />
+        ) : (
+          <LandingPage />
+        )}
       </main>
 
       {/* <footer className={styles.footer}>
